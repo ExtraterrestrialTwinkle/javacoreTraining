@@ -20,8 +20,7 @@ public class ElementaryTraining {
      * @return среднее значение для введенных чисел
      */
     public double averageValue(int firstValue, int secondValue) {
-        //TODO: implement it
-        return 0;
+        return ((double) firstValue + secondValue) / 2;
     }
 
     /**
@@ -34,8 +33,7 @@ public class ElementaryTraining {
      * @return сумма новых трех чисел
      */
     public double complicatedAmount(int firstValue, int secondValue, int thirdValue) {
-        //TODO: implement it
-        return 0;
+        return firstValue * 2 + (secondValue - 3) + thirdValue * thirdValue;
     }
 
     /**
@@ -47,8 +45,11 @@ public class ElementaryTraining {
      * @return новое значение
      */
     public int changeValue(int value) {
-        //TODO: implement it
-        return value;
+        if (value > 3) {
+            return value + 10;
+        } else {
+            return value - 10;
+        }
     }
 
     /**
@@ -62,8 +63,25 @@ public class ElementaryTraining {
      * @return новое число
      */
     public int swapNumbers(int value) {
-        //TODO: implement it
-        return 0;
+        int first;
+        int last;
+        int multiplier = 1;
+        int residue;
+        int intermediate = value;
+
+        if (value < 10) {
+            return value;
+        }
+        do {
+            intermediate = intermediate / 10;
+            multiplier = multiplier * 10;
+        } while (intermediate >= 10);
+
+        first = intermediate % 10;
+        last = value % 10;
+        residue = value - first * multiplier - last;
+
+        return last * multiplier + residue + first;
     }
 
     /**
@@ -77,7 +95,18 @@ public class ElementaryTraining {
      * @return новое число
      */
     public int zeroEvenNumber(int value) {
-        //TODO: implement it
-        return 0;
+        if (value < 10){
+            return value;
+        }
+        String valueString = String.valueOf(value);
+        char[] array = valueString.toCharArray();
+        for(int i = 1; i <= array.length; i++) {
+            if(i % 2 == 0) {
+                array[i-1] = '0';
+            }
+        }
+        valueString = new String(array);
+
+        return Integer.parseInt(valueString);
     }
 }
