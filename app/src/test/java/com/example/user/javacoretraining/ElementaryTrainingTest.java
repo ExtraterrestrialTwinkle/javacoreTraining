@@ -111,11 +111,11 @@ public class ElementaryTrainingTest {
     @Test
     public void zeroEvenNumber_twoDigitNumber() {
         int changedValue = elementaryTraining.zeroEvenNumber(25);
-        int expectedValue = 20;
+        int expectedValue = 5;
         assertEquals(expectedValue, changedValue);
 
         int changedValueForZeroDigit = elementaryTraining.zeroEvenNumber(20);
-        int expectedValueForZeroDigit = 20;
+        int expectedValueForZeroDigit = 0;
         assertEquals(expectedValueForZeroDigit, changedValueForZeroDigit);
     }
 

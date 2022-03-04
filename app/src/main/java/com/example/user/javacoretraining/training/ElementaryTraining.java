@@ -1,5 +1,7 @@
 package com.example.user.javacoretraining.training;
 
+import java.util.Arrays;
+
 /**
  * Набор тренингов по работе с примитивными типами java.
  * <p>
@@ -95,18 +97,20 @@ public class ElementaryTraining {
      * @return новое число
      */
     public int zeroEvenNumber(int value) {
+        int digit;
+        StringBuilder str = new StringBuilder();
+        int count = String.valueOf(value).length();
         if (value < 10){
             return value;
         }
-        String valueString = String.valueOf(value);
-        char[] array = valueString.toCharArray();
-        for(int i = 1; i <= array.length; i++) {
-            if(i % 2 == 0) {
-                array[i-1] = '0';
+        for (int i = 1; i <= count; i++){
+            digit = value % 10;
+            if (digit % 2 == 0) {
+                digit = 0;
             }
+            value /= 10;
+            str.append(digit);
         }
-        valueString = new String(array);
-
-        return Integer.parseInt(valueString);
+        return Integer.parseInt(str.reverse().toString());
     }
 }
