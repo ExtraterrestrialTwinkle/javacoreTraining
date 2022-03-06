@@ -64,7 +64,7 @@ public class ElementaryTraining {
      * @param value число для перестановки
      * @return новое число
      */
-    public int swapNumbers(int value) {
+    public int swapNumbers2(int value) {
         int first;
         int last;
         int multiplier = 1;
@@ -84,6 +84,25 @@ public class ElementaryTraining {
         residue = value - first * multiplier - last;
 
         return last * multiplier + residue + first;
+    }
+
+    public int swapNumbers(int value){
+        if(value < 10){
+            return value;
+        }
+        String valueString = String.valueOf(value);
+        char[] array = valueString.toCharArray();
+        char buffer = array[0];
+        array[0] = array[array.length - 1];
+        array[array.length - 1] = buffer;
+
+        StringBuilder str = new StringBuilder();
+        for(int i = array.length - 1; i >= 0; i--){
+            str.append(array[i]);
+        }
+        String string = str.toString();
+        int val = Integer.parseInt(string);
+        return Integer.parseInt(str.toString());
     }
 
     /**
