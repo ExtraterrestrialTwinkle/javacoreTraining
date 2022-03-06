@@ -1,5 +1,7 @@
 package com.example.user.javacoretraining.training;
 
+import java.util.Random;
+
 /**
  * Набор тренингов по работе с массивами в java.
  * <p>
@@ -44,12 +46,27 @@ public class ArraysTraining {
      */
     public int maxValue(int... values) {
         if (values.length != 0) {
+            long start = System.currentTimeMillis();
+            System.out.println(start);
             for (int i = 0; i < values.length - 1; i++) {
                 if (values[i] > values[i + 1]) {
                     values[i + 1] = values[i];
                 }
             }
-            return values[values.length - 1];
+            int result = values[values.length - 1];
+            long finish = System.currentTimeMillis();
+            System.out.println(finish);
+            long time = finish - start;
+            System.out.println("Non-sorted time = " + time);
+            long start1 = System.currentTimeMillis();
+            System.out.println(start1);
+            values = sort(values);
+            int result1 = values[values.length - 1];
+            long finish1 = System.currentTimeMillis();
+            System.out.println(finish1);
+            long time1 = finish1 - start;
+            System.out.println("Sorted time = " + time1);
+            return result;
         }
         return 0;
     }
@@ -135,5 +152,20 @@ public class ArraysTraining {
             }
         }
         return count2;
+    }
+}
+
+class Result{
+    private static ArraysTraining arraysTraining;
+    static void init(){
+        arraysTraining = new ArraysTraining();
+    }
+    public static void main(String[] args){
+        init();
+        int[] values = new int[50000];
+        for(int i = 0; i < 50000; i++){
+            values[i] = new Random().nextInt();
+        }
+        arraysTraining.maxValue(values); // non-sorted ~3 ms; sorted ~6 ms
     }
 }
