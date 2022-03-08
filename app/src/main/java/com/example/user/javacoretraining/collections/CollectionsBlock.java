@@ -2,7 +2,9 @@ package com.example.user.javacoretraining.collections;
 
 import android.support.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -27,8 +29,12 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<T> collectionTask0(@NonNull List<T> firstList, @NonNull List<T> secondList) {
-        //TODO: implement it
-        return Collections.emptyList();
+        List<T> newList = new ArrayList<>();
+        newList.addAll(firstList);
+        newList.addAll(secondList);
+        Collections.sort(newList);
+        Collections.reverse(newList);
+        return newList;
     }
 
     /**
@@ -39,8 +45,15 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<T> collectionTask1(@NonNull List<T> inputList) {
-        //TODO: implement it
-        return Collections.emptyList();
+        if(inputList.isEmpty()) return inputList;
+        List<T> newList = new ArrayList<>();
+        newList.add(inputList.get(0));
+        for (int i = 1; i < inputList.size(); i++) {
+            List<T> sublist = inputList.subList(0, i);
+            newList.add(inputList.get(i));
+            newList.addAll(sublist);
+        }
+        return newList;
     }
 
     /**
@@ -52,8 +65,7 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public boolean collectionTask2(@NonNull List<T> firstList, @NonNull List<T> secondList) {
-        //TODO: implement it
-        return true;
+        return firstList.containsAll(secondList) && secondList.containsAll(firstList);
     }
 
     /**
@@ -68,8 +80,30 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<T> collectionTask3(@NonNull List<T> inputList, int n) {
-        //TODO: implement it
-        return Collections.emptyList();
+        if (inputList.isEmpty()) return Collections.emptyList();
+        if (Math.abs(n) > inputList.size()) {
+            n = n % inputList.size();
+        }
+        List<T> buffer = new ArrayList<>();
+        if (n > 0) {
+            buffer.addAll(inputList.subList(inputList.size() - n, inputList.size()));
+            for (int i = inputList.size() - 1; i >= n; i--) {
+                inputList.set(i, inputList.get(i - n));
+            }
+            for (int i = 0; i < n; i++) {
+                inputList.set(i, buffer.get(i));
+            }
+        } else {
+            n = Math.abs(n);
+            buffer.addAll(inputList.subList(0, n));
+            for (int i = 0; i < inputList.size() - n; i++) {
+                inputList.set(i, inputList.get(i + n));
+            }
+            for (int i = 0; i < n; i++) {
+                inputList.set(inputList.size() - n + i, buffer.get(i));
+            }
+        }
+        return inputList;
     }
 
     /**
@@ -82,10 +116,13 @@ public class CollectionsBlock<T extends Comparable> {
      * @return список после замены каждого вхождения слова A на слово В
      * @throws NullPointerException если один из параметров null
      */
-    public List<String> collectionTask4(@NonNull List<String> inputList, @NonNull String a,
-                                        @NonNull String b) {
-        //TODO: implement it
-        return Collections.emptyList();
+    public List<String> collectionTask4(List<String> inputList, String a, String b) {
+        if(inputList == null || a == null || b == null) throw new NullPointerException();
+        if(inputList.contains(a)){
+            inputList.set(inputList.indexOf(a), b);
+            collectionTask4(inputList, a, b);
+        }
+        return inputList;
     }
 
     /*
