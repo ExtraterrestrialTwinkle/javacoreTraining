@@ -22,8 +22,14 @@ public class StringsTraining {
      * элементов строки text
      */
     public String getOddCharacterString(String text) {
-        //TODO: implement it
-        return "";
+        StringBuilder newString = new StringBuilder();
+        char[] textArray = text.toCharArray();
+        for(int i = 0; i < textArray.length; i++){
+            if(i % 2 == 1){
+                newString.append(textArray[i]);
+            }
+        }
+        return newString.toString();
     }
 
     /**
@@ -37,8 +43,30 @@ public class StringsTraining {
      * вернуть пустой массив
      */
     public int[] getArrayLastSymbol(String text) {
-        //TODO: implement it
-        return new int[]{};
+        int[] countArray = new int[]{};
+        int count = 0;
+        char[] textArray = text.toCharArray();
+        if(textArray.length != 0){
+            for (int i = 0; i < textArray.length - 1; i++){
+                if(textArray[i] == textArray[textArray.length - 1]){
+                    count++;
+                }
+            }
+            if(count != 0) {
+                countArray = new int[count];
+                int i = 0;
+                for (int j = 0; j < countArray.length; j++){
+                    while (i < textArray.length - 1) {
+                        if(textArray[i] != textArray[textArray.length - 1]) {
+                            i++;
+                        } else break;
+                    }
+                    countArray[j] = i;
+                    i++;
+                }
+            }
+        }
+        return countArray;
     }
 
     /**
@@ -49,8 +77,13 @@ public class StringsTraining {
      * @return количество цифр в строке
      */
     public int getNumbersCount(String text) {
-        //TODO: implement it
-        return 0;
+        char[] textArray = text.toCharArray();
+        int count = 0;
+        for(int i = 0; i < textArray.length; i++){
+            char ch = textArray[i];
+            if(Character.isDigit(ch)) count++;
+        }
+        return count;
     }
 
     /**
@@ -61,8 +94,56 @@ public class StringsTraining {
      * @return текст, где цифры заменены словами
      */
     public String replaceAllNumbers(String text) {
-        //TODO: implement it
-        return text;
+        char[] textArray = text.toCharArray();
+        String[] stringArray = new String[textArray.length];
+        StringBuilder string = new StringBuilder();
+        for(int i = 0; i < textArray.length; i++){
+            char ch = textArray[i];
+            stringArray[i] = Character.toString(ch);
+            switch(ch){
+                case '0': {
+                    stringArray[i] = "zero";
+                    break;
+                }
+                case '1': {
+                    stringArray[i] = "one";
+                    break;
+                }
+                case '2': {
+                    stringArray[i] = "two";
+                    break;
+                }
+                case '3': {
+                    stringArray[i] = "three";
+                    break;
+                }
+                case '4': {
+                    stringArray[i] = "four";
+                    break;
+                }
+                case '5': {
+                    stringArray[i] = "five";
+                    break;
+                }
+                case '6': {
+                    stringArray[i] = "six";
+                    break;
+                }
+                case '7': {
+                    stringArray[i] = "seven";
+                    break;
+                }
+                case '8': {
+                    stringArray[i] = "eight";
+                    break;
+                }
+                case '9': {
+                    stringArray[i] = "nine";
+                }
+            }
+            string.append(stringArray[i]);
+        }
+        return string.toString();
     }
 
     /**
@@ -73,7 +154,19 @@ public class StringsTraining {
      * @return измененная строка
      */
     public String capitalReverse(String text) {
-        //TODO: implement it
+        char[] textArray = text.toCharArray();
+        for(int i = 0; i < textArray.length; i++) {
+            char ch = textArray[i];
+            if(Character.isLetter(ch)){
+                if(Character.isLowerCase(ch)){
+                    ch = Character.toUpperCase(ch);
+                } else {
+                    ch = Character.toLowerCase(ch);
+                }
+                textArray[i] = ch;
+            }
+        }
+        text = String.valueOf(textArray);
         return text;
     }
 
