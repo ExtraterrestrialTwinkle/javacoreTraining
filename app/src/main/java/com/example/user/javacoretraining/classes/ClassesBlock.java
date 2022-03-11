@@ -610,48 +610,5 @@ public interface ClassesBlock {
             return String.format("Abonent: %s %s %s", this.firstName, this.lastName, this.patronymic);
         }
     }
-
-    /*
-      VI
-
-      Задача на взаимодействие между классами. Разработать систему «Вступительные экзамены».
-      Абитуриент регистрируется на Факультет, сдает Экзамены. Преподаватель выставляет Оценку.
-      Система подсчитывает средний бал и определяет Абитуриента, зачисленного в учебное заведение.
-     */
-
-    abstract class Faculty {
-
-        Exam[] exams;
-        int minScore;
-        List<Applicant> applicants;
-        List<Applicant> budgetStudents;
-
-        void enrollment() {
-            for (Applicant applicant : applicants) {
-                if (applicant.score >= minScore) {
-                    budgetStudents.add(applicant);
-                }
-            }
-        }
-    }
-
-    enum Exam {
-        MATH, ENGLISH, PHYSICS, CHEMISTRY, HISTORY, LAW, ART, GEOGRAPHY
-    }
-
-    abstract class Applicant {
-
-        String name;
-        Faculty faculty;
-        int score;
-
-        void registrate(Faculty faculty) {
-            this.faculty = faculty;
-        }
-
-        void takeExam(Exam exam) {
-
-        }
-
-    }
+    //Задачи 6 и 7 выполнены в отдельных пакетах
 }
